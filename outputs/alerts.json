@@ -1,0 +1,30 @@
+[
+  {
+    "rule": "ip_churn",
+    "etype": "user",
+    "entity": "bob",
+    "score": 2.0,
+    "event": {
+      "distinct_ips": [
+        "102.4.5.6",
+        "102.4.5.7",
+        "102.4.5.8",
+        "102.4.5.9"
+      ],
+      "count": 4
+    }
+  },
+  {
+    "rule": "suspicious_process",
+    "etype": "host",
+    "entity": "pc1",
+    "score": 2.5,
+    "event": {
+      "ts": "2026-01-26T10:03:00Z",
+      "host": "pc1",
+      "user": "alice",
+      "process": "powershell.exe",
+      "cmdline": "powershell -enc aQBlAHgAIAAoACkA"
+    }
+  }
+]

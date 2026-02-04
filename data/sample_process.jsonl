@@ -1,0 +1,2 @@
+{"ts":"2026-01-26T10:03:00Z","host":"pc1","user":"alice","process":"powershell.exe","cmdline":"powershell -enc aQBlAHgAIAAoACkA"}
+{"ts":"2026-01-26T10:04:00Z","host":"pc2","user":"bob","process":"chrome.exe","cmdline":"chrome.exe https://example.com"}
