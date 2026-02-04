@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LogWatch TDAS — Findings Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div>
+          <h1>LogWatch TDAS</h1>
+          <p class="muted">Static dashboard for <span class="mono">outputs/alerts.json</span></p>
+        </div>
+        <div class="topbar__actions">
+          <button id="btn-load-default" class="btn btn--primary" type="button">Load from outputs</button>
+          <label class="btn" for="file-input">Upload alerts.json</label>
+          <input id="file-input" type="file" accept="application/json,.json" hidden />
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="banner" class="banner" aria-live="polite">
+        <div class="banner__drop" id="dropzone">
+          <div>
+            <div class="banner__title">Drop an alerts.json here</div>
+            <div class="banner__subtitle muted">
+              Or click <span class="mono">Upload alerts.json</span>. For auto-load, serve the repo and click <span class="mono">Load from outputs</span>.
+            </div>
+          </div>
+        </div>
+        <div class="banner__status" id="status"></div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="card__title">Overview</div>
+          <div class="kpis">
+            <div class="kpi">
+              <div class="kpi__label">Total findings</div>
+              <div class="kpi__value" id="kpi-total">—</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label">Filtered</div>
+              <div class="kpi__value" id="kpi-filtered">—</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label">Unique entities</div>
+              <div class="kpi__value" id="kpi-entities">—</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label">Time span</div>
+              <div class="kpi__value" id="kpi-timespan">—</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="chart" aria-label="Severity distribution">
+            <div class="chart__title">By severity</div>
+            <div class="sevbar" id="sevbar"></div>
+            <div class="sevlegend" id="sevlegend"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__title">Filters</div>
+          <div class="filters">
+            <div class="field">
+              <label for="search">Search entity</label>
+              <input id="search" type="search" placeholder="e.g. alice, pc1, 10.0.0.4" />
+            </div>
+
+            <div class="field">
+              <label>Severity</label>
+              <div class="chips" id="severity-chips"></div>
+            </div>
+
+            <div class="field">
+              <label>Rule</label>
+              <div class="checklist" id="rule-list"></div>
+            </div>
+
+            <div class="field">
+              <label>Entity type</label>
+              <div class="checklist" id="etype-list"></div>
+            </div>
+
+            <div class="field field--row">
+              <button id="btn-reset" class="btn" type="button">Reset filters</button>
+              <button id="btn-export" class="btn" type="button">Export filtered JSON</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__title">Top entities</div>
+          <div class="tablewrap">
+            <table class="table" id="rank-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Entity</th>
+                  <th class="right">Score</th>
+                  <th class="right">Events</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card grid__span2">
+          <div class="card__title">Findings</div>
+          <div class="tablewrap">
+            <table class="table" id="findings-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Severity</th>
+                  <th>Rule</th>
+                  <th>Type</th>
+                  <th>Entity</th>
+                  <th class="right">Score</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card grid__span2">
+          <div class="card__title">Inspect finding</div>
+          <div class="inspect">
+            <div class="inspect__hint muted">Click a row in Findings to inspect the raw JSON.</div>
+            <pre class="code" id="inspect-json">{
+  "note": "No finding selected"
+}</pre>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer muted">
+        <div>
+          Tip: run <span class="mono">python src/main.py</span> then <span class="mono">python -m http.server 8000</span> and open
+          <a href="/site/" rel="noreferrer">http://localhost:8000/site/</a>.
+        </div>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

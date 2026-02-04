@@ -1,2 +1,6 @@
-pandas
-python-dateutil
+# The detection pipeline in src/ uses only the Python standard library.
+#
+# If you want to run the old Streamlit dashboard in app.py, install:
+#   streamlit
+#   pandas
+#   python-dateutil
