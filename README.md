@@ -3,12 +3,12 @@
 LogWatch TDAS is a lightweight threat detection and analysis system that ingests common security logs (auth, process, network), runs detection rules, scores suspicious entities, and generates alerts + a human-readable report.
 
 ## Features
-- ✅ Brute-force detection (failed logins in a short window)
-- ✅ IP churn / “impossible travel” proxy (many IPs for one user quickly)
-- ✅ Suspicious process detection (LOLBins / risky command patterns)
-- ✅ Rare destination detection (unexpected outbound connections)
-- ✅ Risk scoring + top suspicious entities
-- ✅ Static dashboard (HTML/CSS/JS) for exploration
+-  Brute-force detection (failed logins in a short window)
+-  IP churn / “impossible travel” proxy (many IPs for one user quickly)
+-  Suspicious process detection (LOLBins / risky command patterns)
+-  Rare destination detection (unexpected outbound connections)
+-  Risk scoring + top suspicious entities
+-  Static dashboard (HTML/CSS/JS) for exploration
 
 ## Architecture (simple)
 1. **Ingest** JSONL logs (one JSON event per line)
